@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // String uri = 'http://10.75.22.236:4000';
-String uri = 'https://upset-purse-cod.cyclic.app:4000';
+String uri = 'https://upset-purse-cod.cyclic.app';
 //10.75.22.236
 
 // String uri = 'http://localhost:4000';
