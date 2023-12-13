@@ -38,21 +38,26 @@ class _AuthScreenState extends State<AuthScreen> {
   }
 
   void signupUser() {
-    authService.signupUser(
-      context: context,
-      name: _nameController.text,
-      email: _emailController.text,
-      password: _passwordController.text,
-      address: _addressController.text,
-    );
+    //This ensures that the setState() is only called if the widget is still mounted
+    if (mounted) {
+      authService.signupUser(
+        context: context,
+        name: _nameController.text,
+        email: _emailController.text,
+        password: _passwordController.text,
+        address: _addressController.text,
+      );
+    }
   }
 
   void signInUser() {
-    authService.signInUser(
-      context: context,
-      email: _emailController.text,
-      password: _passwordController.text,
-    );
+    if (mounted) {
+      authService.signInUser(
+        context: context,
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+    }
   }
 
   @override
@@ -105,7 +110,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             CustomTextField(
                               hintText: 'Name',
                               prefixIcon:
-                              const Icon(Icons.person, color: Colors.black),
+                                  const Icon(Icons.person, color: Colors.black),
                               controller: _nameController,
                               secureText: false,
                             ),
@@ -115,7 +120,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             CustomTextField(
                               hintText: 'Email',
                               prefixIcon:
-                              const Icon(Icons.email, color: Colors.black),
+                                  const Icon(Icons.email, color: Colors.black),
                               controller: _emailController,
                               secureText: false,
                             ),
@@ -125,20 +130,18 @@ class _AuthScreenState extends State<AuthScreen> {
                             CustomTextField(
                               hintText: 'Password',
                               prefixIcon:
-                              const Icon(Icons.key, color: Colors.black),
+                                  const Icon(Icons.key, color: Colors.black),
                               controller: _passwordController,
                               secureText: true,
                               suffixIcon: IconButton(
-                                  icon:  const Icon(
-                                      Icons.visibility
-                                    //secureText ? Icons.visibility : Icons.visibility_off,
-                                  ),
+                                  icon: const Icon(Icons.visibility
+                                      //secureText ? Icons.visibility : Icons.visibility_off,
+                                      ),
                                   onPressed: () {
                                     setState(() {
                                       secureText = !secureText;
                                     });
-                                  }
-                              ),
+                                  }),
                             ),
                             const SizedBox(
                               height: 10,
@@ -194,16 +197,14 @@ class _AuthScreenState extends State<AuthScreen> {
                             hintText: 'Password',
                             secureText: secureText,
                             suffixIcon: IconButton(
-                              icon:  const Icon(
-                                Icons.visibility
-                                //secureText ? Icons.visibility : Icons.visibility_off,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  secureText = !secureText;
-                                });
-                              }
-                            ),
+                                icon: const Icon(Icons.visibility
+                                    //secureText ? Icons.visibility : Icons.visibility_off,
+                                    ),
+                                onPressed: () {
+                                  setState(() {
+                                    secureText = !secureText;
+                                  });
+                                }),
                             prefixIcon:
                                 const Icon(Icons.key, color: Colors.black),
                             controller: _passwordController,

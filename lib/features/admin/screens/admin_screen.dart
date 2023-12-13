@@ -1,3 +1,4 @@
+import 'package:amazon_clone/features/account/services/account_services.dart';
 import 'package:amazon_clone/features/admin/screens/products_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +30,7 @@ class _AdminScreenState extends State<AdminScreen> {
 
   @override
   Widget build(BuildContext context) {
+    AccountServices accountServices = AccountServices();
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
@@ -52,14 +54,25 @@ class _AdminScreenState extends State<AdminScreen> {
                     color: Colors.black,
                   ),
                 ),
-                const Text(
-                  'Admin',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    color: GlobalVariables.blackColor,
-                  ),
-                )
+                Row(
+                  children: [
+                    const Text(
+                      'Admin',
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        color: GlobalVariables.blackColor,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        accountServices.signOut(context: context);
+                      },
+                      icon: const Icon(Icons.logout),
+                      iconSize: 20,
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
