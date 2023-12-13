@@ -20,6 +20,7 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   Auth _auth = Auth.signUp;
+  bool secureText = true;
   final _signUpFormKey = GlobalKey<FormState>();
   final _signInFormKey = GlobalKey<FormState>();
   AuthService authService = AuthService();
@@ -62,7 +63,6 @@ class _AuthScreenState extends State<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool secureText = true;
     return Scaffold(
       backgroundColor: GlobalVariables.greyBackgroundColor,
       body: SafeArea(
@@ -132,7 +132,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               prefixIcon:
                                   const Icon(Icons.key, color: Colors.black),
                               controller: _passwordController,
-                              secureText: true,
+                              secureText: secureText,
                               suffixIcon: IconButton(
                                   icon: const Icon(Icons.visibility
                                       //secureText ? Icons.visibility : Icons.visibility_off,
